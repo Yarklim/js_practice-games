@@ -2,16 +2,27 @@ const containerButtons = document.querySelector('#fifteen');
 const buttonItems = Array.from(document.querySelectorAll('.fifteen__button'));
 
 const countItems = 16;
+const gap = 10;
 
 if (buttonItems.length !== countItems) {
   throw new Error(`There should be ${countItems} items in HTML`);
 }
 
 /* ====== 1 - Position ======*/
+buttonItems[countItems - 1].style.display = 'none';
+
 let matrix = getMatrix(buttonItems.map(el => Number(el.dataset.matrixId)));
 
-console.log(matrix);
+setPositionItem(matrix);
+
 /* ====== 2 - Shuffle ======*/
+document.querySelector('#shuffle').addEventListener('click', () => {
+  const shuffledArr = shuffleArr(matrix.flat());
+  console.log(shuffledArr);
+  matrix = getMatrix(shuffledArr);
+  setPositionItem(matrix);
+});
+
 /* ====== 3 - Change Position by click ======*/
 /* ====== 3 - Change Position by keydown ======*/
 
@@ -32,4 +43,28 @@ function getMatrix(arr) {
   }
 
   return matrix;
+}
+
+function setPositionItem(matrix) {
+  for (let y = 0; y < matrix.length; y++) {
+    for (let x = 0; x < matrix[y].length; x++) {
+      const value = matrix[y][x];
+      const item = buttonItems[value - 1];
+      setItemStyles(item, x, y);
+    }
+  }
+}
+
+function setItemStyles(item, x, y) {
+  const shiftPs = 100;
+  item.style.transform = `translate3D(calc(${x * shiftPs}% + ${gap}px), calc(${
+    y * shiftPs
+  }% + ${gap}px), 0)`;
+}
+
+function shuffleArr(arr) {
+  return arr
+    .map(el => ({ el, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ el }) => el);
 }
