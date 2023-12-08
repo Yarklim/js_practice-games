@@ -33,7 +33,12 @@ containerButtons.addEventListener('click', e => {
   const buttonNumber = Number(buttonItem.dataset.matrixId);
   const buttonCoords = findCoordsByNumber(buttonNumber, matrix);
   const blankCoords = findCoordsByNumber(blankPosition, matrix);
-  console.log(blankCoords);
+  const isValid = isValidForSwap(buttonCoords, blankCoords);
+
+  if (isValid) {
+    swap(blankCoords, buttonCoords, matrix);
+    setPositionItem(matrix);
+  }
 });
 /* ====== Change Position by keydown ======*/
 
@@ -89,4 +94,20 @@ function findCoordsByNumber(number, matrix) {
     }
   }
   return null;
+}
+
+function isValidForSwap(coordsBtn, coordsBlank) {
+  const diffX = Math.abs(coordsBtn.x - coordsBlank.x);
+  const diffY = Math.abs(coordsBtn.y - coordsBlank.y);
+
+  return (
+    (diffX === 1 || diffY === 1) &&
+    (coordsBtn.x === coordsBlank.x || coordsBtn.y === coordsBlank.y)
+  );
+}
+
+function swap(blankCoords, buttonCoords, matrix) {
+  const blankNumber = matrix[blankCoords.y][blankCoords.x];
+  matrix[blankCoords.y][blankCoords.x] = matrix[buttonCoords.y][buttonCoords.x];
+  matrix[buttonCoords.y][buttonCoords.x] = blankNumber;
 }
