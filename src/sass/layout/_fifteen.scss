@@ -1,7 +1,18 @@
 .fifteen {
+  width: 100%;
+  height: 100vh;
+
   padding-top: 50px;
 
+  background-color: #39626a;
+
   user-select: none;
+}
+
+.fifteen__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(240, 255, 255, 0.795);
 }
 
 .fifteen__content--wrapper {
@@ -10,8 +21,9 @@
   margin: 20px auto;
   padding: 10px;
 
-  border: 1px solid black;
-  border-radius: 6px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #244045, #2b4c52);
+  box-shadow: 8px -8px 16px #223c41, -8px 8px 16px #2e5259;
 }
 
 .fifteen__title {
@@ -30,15 +42,20 @@
   width: calc(25% - 5px);
   height: calc(25% - 5px);
 
-  padding: 3px;
+  padding: 1px;
 
   position: absolute;
   top: 0;
   left: 0;
 
-  border-radius: 7px;
+  font-weight: 600;
+  color: rgba(240, 255, 255, 0.795);
 
-  transition: transform 0.3s ease-in-out;
+  border-radius: 26px;
+  background: #25383c;
+  box-shadow: inset 24px -24px 47px #1f3033, inset -24px 24px 47px #2b4045;
+
+  transition: all 0.3s ease-in-out;
 
   & span {
     width: 100%;
@@ -50,15 +67,13 @@
 
     font-size: 32px;
 
-    border: 1px solid black;
-    border-radius: 7px;
-
-    transition: background-color 0.5s ease-in-out;
+    border: 1px solid #1522259a;
+    border-radius: 26px;
   }
 }
 
-.fifteen__buttons--wrapper.fifteenWon .fifteen__button span {
-  background-color: rgba(43, 223, 103, 0.507);
+.fifteen__buttons--wrapper.fifteenWon .fifteen__button {
+  background-color: #32885d;
 }
 
 .fifteen__shuffle {
@@ -67,6 +82,22 @@
   margin: 0 auto;
   padding: 10px 20px;
 
-  border: 1px solid black;
-  border-radius: 5px;
+  font-weight: 500;
+  color: rgba(240, 255, 255, 0.671);
+
+  //   border: 1px solid rgb(100, 123, 128);
+  border-radius: 10px;
+  background: linear-gradient(45deg, #244045, #2b4c52);
+  box-shadow: 2px -2px 10px #223c41, -4px 4px 10px #2e5259;
+
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
