@@ -8,14 +8,14 @@ if (buttonItems.length !== countItems) {
   throw new Error(`There should be ${countItems} items in HTML`);
 }
 
-/* ====== 1 - Position ======*/
+/* ====== Start Position ======*/
 buttonItems[countItems - 1].style.display = 'none';
 
 let matrix = getMatrix(buttonItems.map(el => Number(el.dataset.matrixId)));
 
 setPositionItem(matrix);
 
-/* ====== 2 - Shuffle ======*/
+/* ====== Shuffle ======*/
 document.querySelector('#shuffle').addEventListener('click', () => {
   const shuffledArr = shuffleArr(matrix.flat());
   console.log(shuffledArr);
@@ -23,8 +23,8 @@ document.querySelector('#shuffle').addEventListener('click', () => {
   setPositionItem(matrix);
 });
 
-/* ====== 3 - Change Position by click ======*/
-/* ====== 3 - Change Position by keydown ======*/
+/* ====== Change Position by click ======*/
+/* ====== Change Position by keydown ======*/
 
 /* ====== Helpers ======*/
 function getMatrix(arr) {
