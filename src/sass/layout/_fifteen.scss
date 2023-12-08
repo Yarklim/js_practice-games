@@ -9,17 +9,22 @@
   user-select: none;
 }
 
+.content--wrapper.gameShuffle {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
 .fifteen__title {
   font-size: 24px;
   font-weight: 600;
-  color: rgba(240, 255, 255, 0.795);
+  color: rgba(133, 240, 240, 0.884);
 }
 
 .fifteen__content--wrapper {
   max-width: 440px;
 
   margin: 20px auto;
-  padding: 10px;
+  padding: 5px;
 
   border-radius: 20px;
   background: linear-gradient(45deg, #244045, #2b4c52);
@@ -49,10 +54,10 @@
   left: 0;
 
   font-weight: 600;
-  color: rgba(240, 255, 255, 0.795);
+  color: rgba(133, 240, 240, 0.884);
 
-  border-radius: 26px;
-  background: #25383c;
+  border-radius: 20px;
+  background: #344e53;
   box-shadow: inset 24px -24px 47px #1f3033, inset -24px 24px 47px #2b4045;
 
   transition: all 0.3s ease-in-out;
@@ -67,8 +72,8 @@
 
     font-size: 32px;
 
-    border: 1px solid #1522259a;
-    border-radius: 26px;
+    border: 1px solid #2b4c52;
+    border-radius: 20px;
   }
 }
 
@@ -83,9 +88,8 @@
   padding: 10px 20px;
 
   font-weight: 500;
-  color: rgba(240, 255, 255, 0.671);
+  color: rgba(133, 240, 240, 0.884);
 
-  //   border: 1px solid rgb(100, 123, 128);
   border-radius: 10px;
   background: linear-gradient(45deg, #244045, #2b4c52);
   box-shadow: 2px -2px 10px #223c41, -4px 4px 10px #2e5259;

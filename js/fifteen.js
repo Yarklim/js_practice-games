@@ -1,3 +1,4 @@
+const gameContainer = document.querySelector('.content--wrapper');
 const containerButtons = document.querySelector('#fifteen');
 const buttonItems = Array.from(document.querySelectorAll('.fifteen__button'));
 
@@ -16,16 +17,41 @@ let matrix = getMatrix(buttonItems.map(el => Number(el.dataset.matrixId)));
 setPositionItem(matrix);
 
 /* ====== Shuffle ======*/
+const maxShuffleCount = 70;
+let timer;
+let shuffled = false;
+const shuffledClassName = 'gameShuffle';
+
 document.querySelector('#shuffle').addEventListener('click', () => {
-  const shuffledArr = shuffleArr(matrix.flat());
-  matrix = getMatrix(shuffledArr);
-  setPositionItem(matrix);
+  if (shuffled) {
+    return;
+  }
+  shuffled = true;
+  let shuffleCount = 0;
+  clearInterval(timer);
+  gameContainer.classList.add(shuffledClassName);
+
+  timer = setInterval(() => {
+    randomSwap(matrix);
+    setPositionItem(matrix);
+
+    shuffleCount += 1;
+
+    if (shuffleCount >= maxShuffleCount) {
+      gameContainer.classList.remove(shuffledClassName);
+      clearInterval(timer);
+      shuffled = false;
+    }
+  }, 70);
 });
 
 /* ====== Change Position by click ======*/
 const blankPosition = 16;
 
 containerButtons.addEventListener('click', e => {
+  if (shuffled) {
+    return;
+  }
   const buttonItem = e.target.closest('button');
   if (!buttonItem) {
     return;
@@ -43,6 +69,9 @@ containerButtons.addEventListener('click', e => {
 
 /* ====== Change Position by keydown ======*/
 window.addEventListener('keydown', e => {
+  if (shuffled) {
+    return;
+  }
   if (!e.key.includes('Arrow')) {
     return;
   }
@@ -84,8 +113,6 @@ window.addEventListener('keydown', e => {
   setPositionItem(matrix);
 });
 
-/* ====== Show Win ======*/
-
 /* ====== Helpers ======*/
 function getMatrix(arr) {
   const matrix = [[], [], [], []];
@@ -105,6 +132,7 @@ function getMatrix(arr) {
   return matrix;
 }
 
+// ====================
 function setPositionItem(matrix) {
   for (let y = 0; y < matrix.length; y++) {
     for (let x = 0; x < matrix[y].length; x++) {
@@ -115,6 +143,7 @@ function setPositionItem(matrix) {
   }
 }
 
+// ====================
 function setItemStyles(item, x, y) {
   const shiftPs = 100;
   item.style.transform = `translate3D(calc(${x * shiftPs}% + ${gap}px), calc(${
@@ -122,13 +151,42 @@ function setItemStyles(item, x, y) {
   }% + ${gap}px), 0)`;
 }
 
-function shuffleArr(arr) {
-  return arr
-    .map(el => ({ el, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ el }) => el);
+// ====================
+let blockedCoords = null;
+function randomSwap(matrix) {
+  const blankCoords = findCoordsByNumber(blankPosition, matrix);
+  const validCords = findValidCoords({
+    blankCoords,
+    matrix,
+    blockedCoords,
+  });
+
+  const swapCoords = validCords[Math.floor(Math.random() * validCords.length)];
+
+  swap(blankCoords, swapCoords, matrix);
+  blockedCoords = blankCoords;
 }
 
+// ====================
+function findValidCoords({ blankCoords, matrix, blockedCoords }) {
+  const validCordsArr = [];
+
+  for (let y = 0; y < matrix.length; y++) {
+    for (let x = 0; x < matrix[y].length; x++) {
+      if (isValidForSwap({ x, y }, blankCoords)) {
+        if (
+          !blockedCoords ||
+          !(blockedCoords.x === x && blockedCoords.y === y)
+        ) {
+          validCordsArr.push({ x, y });
+        }
+      }
+    }
+  }
+  return validCordsArr;
+}
+
+// ====================
 function findCoordsByNumber(number, matrix) {
   for (let y = 0; y < matrix.length; y++) {
     for (let x = 0; x < matrix[y].length; x++) {
@@ -140,6 +198,7 @@ function findCoordsByNumber(number, matrix) {
   return null;
 }
 
+// ====================
 function isValidForSwap(coordsBtn, coordsBlank) {
   const diffX = Math.abs(coordsBtn.x - coordsBlank.x);
   const diffY = Math.abs(coordsBtn.y - coordsBlank.y);
@@ -150,6 +209,7 @@ function isValidForSwap(coordsBtn, coordsBlank) {
   );
 }
 
+// ====================
 function swap(blankCoords, buttonCoords, matrix) {
   const blankNumber = matrix[blankCoords.y][blankCoords.x];
   matrix[blankCoords.y][blankCoords.x] = matrix[buttonCoords.y][buttonCoords.x];
@@ -160,6 +220,7 @@ function swap(blankCoords, buttonCoords, matrix) {
   }
 }
 
+/* ====== Show Win ======*/
 const winFlatArr = new Array(16).fill(0).map((_item, i) => i + 1);
 
 function isWon(matrix) {
@@ -173,6 +234,7 @@ function isWon(matrix) {
   return true;
 }
 
+// =======================
 const wonClass = 'fifteenWon';
 function addWonClass() {
   setTimeout(() => {
