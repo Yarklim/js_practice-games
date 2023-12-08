@@ -18,12 +18,23 @@ setPositionItem(matrix);
 /* ====== Shuffle ======*/
 document.querySelector('#shuffle').addEventListener('click', () => {
   const shuffledArr = shuffleArr(matrix.flat());
-  console.log(shuffledArr);
   matrix = getMatrix(shuffledArr);
   setPositionItem(matrix);
 });
 
 /* ====== Change Position by click ======*/
+const blankPosition = 16;
+
+containerButtons.addEventListener('click', e => {
+  const buttonItem = e.target.closest('button');
+  if (!buttonItem) {
+    return;
+  }
+  const buttonNumber = Number(buttonItem.dataset.matrixId);
+  const buttonCoords = findCoordsByNumber(buttonNumber, matrix);
+  const blankCoords = findCoordsByNumber(blankPosition, matrix);
+  console.log(blankCoords);
+});
 /* ====== Change Position by keydown ======*/
 
 /* ====== Helpers ======*/
@@ -67,4 +78,15 @@ function shuffleArr(arr) {
     .map(el => ({ el, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ el }) => el);
+}
+
+function findCoordsByNumber(number, matrix) {
+  for (let y = 0; y < matrix.length; y++) {
+    for (let x = 0; x < matrix[y].length; x++) {
+      if (matrix[y][x] === number) {
+        return { x, y };
+      }
+    }
+  }
+  return null;
 }
