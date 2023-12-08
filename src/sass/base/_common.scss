@@ -10,6 +10,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 1.67;
+  color: var(--titles-color);
 
   background-color: var(--light-color);
 
@@ -31,41 +32,4 @@ body {
 
 .main {
   flex-grow: 1;
-}
-
-.logo {
-  width: clamp(2rem, 1.536rem + 2.32vw, 3.625rem);
-}
-
-.section__title {
-  font-family: var(--font-rosario);
-  font-size: clamp(1.5rem, 0.679rem + 4.11vw, 4.375rem);
-  font-weight: 700;
-  line-height: 1.28;
-
-  text-wrap: balance;
-
-  color: var(--title-color);
-}
-
-.section__description {
-  width: clamp(18.75rem, 13.393rem + 26.79vw, 37.5rem);
-
-  font-size: clamp(0.625rem, 0.482rem + 0.71vw, 1.125rem);
-  line-height: 1.67;
-
-  color: var(--paragraph-color);
-}
-
-address {
-  all: unset;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

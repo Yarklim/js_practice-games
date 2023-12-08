@@ -1,0 +1,49 @@
+.fifteen {
+  user-select: none;
+}
+
+.fifteen__content--wrapper {
+  max-width: 440px;
+
+  margin: 20px auto;
+  padding: 10px;
+
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.fifteen__title {
+  text-align: center;
+}
+
+.fifteen__buttons--wrapper {
+  width: 100%;
+
+  padding-bottom: 100%;
+
+  position: relative;
+}
+
+.fifteen__button {
+  width: calc(25% - 5px);
+  height: calc(25% - 5px);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  font-size: 32px;
+
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.fifteen__shuffle {
+  min-width: 100px;
+
+  margin: 0 auto;
+  padding: 10px 20px;
+
+  border: 1px solid black;
+  border-radius: 5px;
+}
