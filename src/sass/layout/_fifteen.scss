@@ -1,4 +1,6 @@
 .fifteen {
+  padding-top: 50px;
+
   user-select: none;
 }
 
@@ -34,6 +36,8 @@
   top: 0;
   left: 0;
 
+  border-radius: 7px;
+
   transition: transform 0.3s ease-in-out;
 
   & span {
@@ -48,7 +52,13 @@
 
     border: 1px solid black;
     border-radius: 7px;
+
+    transition: background-color 0.5s ease-in-out;
   }
+}
+
+.fifteen__buttons--wrapper.fifteenWon .fifteen__button span {
+  background-color: rgba(43, 223, 103, 0.507);
 }
 
 .fifteen__shuffle {

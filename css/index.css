@@ -171,6 +171,7 @@ body {
 }
 
 .fifteen {
+  padding-top: 50px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -202,6 +203,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 7px;
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
   transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
@@ -222,6 +224,12 @@ body {
   font-size: 32px;
   border: 1px solid black;
   border-radius: 7px;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.fifteen__buttons--wrapper.fifteenWon .fifteen__button span {
+  background-color: rgba(43, 223, 103, 0.507);
 }
 
 .fifteen__shuffle {
