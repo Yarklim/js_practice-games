@@ -64,7 +64,7 @@ function startConfig() {
 
 function stopTimer() {
   clearInterval(interval);
-  console.log(currentTimeValue);
+  console.log(Number(currentTimeValue));
   isShuffle = false;
 }
 

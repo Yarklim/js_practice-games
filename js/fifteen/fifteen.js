@@ -20,6 +20,7 @@ setPositionItem(matrix);
 const maxShuffleCount = 100;
 let timer;
 let shuffled = false;
+let isShuffle = false;
 const shuffledClassName = 'gameShuffle';
 
 document.querySelector('#shuffle').addEventListener('click', () => {
@@ -27,6 +28,7 @@ document.querySelector('#shuffle').addEventListener('click', () => {
     return;
   }
   shuffled = true;
+  isShuffle = true;
   let shuffleCount = 0;
   clearInterval(timer);
   gameContainer.classList.add(shuffledClassName);
@@ -217,7 +219,11 @@ function swap(blankCoords, buttonCoords, matrix) {
   matrix[buttonCoords.y][buttonCoords.x] = blankNumber;
 
   if (isWon(matrix)) {
+    if (!isShuffle) {
+      return;
+    }
     addWonClass();
+    isShuffle = false;
   }
 }
 
