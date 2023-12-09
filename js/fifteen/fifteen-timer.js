@@ -3,6 +3,9 @@ const shuffleBtn = document.querySelector('.fifteen__shuffle');
 const currentM = document.querySelector('#current-m');
 const currentS = document.querySelector('#current-s');
 const currentMS = document.querySelector('#current-ms');
+const bestM = document.querySelector('#best-m');
+const bestS = document.querySelector('#best-s');
+const bestMS = document.querySelector('#best-ms');
 
 let isShuffle = false;
 
@@ -13,6 +16,7 @@ let milliseconds = 0;
 let interval;
 
 let currentTimeValue = null;
+let bestTimeValue = bestM.textContent + bestS.textContent + bestMS.textContent;
 
 shuffleBtn.addEventListener('click', startConfig);
 
@@ -48,12 +52,10 @@ function startTimer() {
   if (milliseconds <= 9) {
     currentMS.textContent = '0' + milliseconds;
   }
-
-  currentTimeValue =
-    currentM.textContent + currentS.textContent + currentMS.textContent;
 }
 
 function startConfig() {
+  stopTimer();
   currentMS.innerHTML = '00';
   currentS.innerHTML = '00';
   currentM.innerHTML = '00';
@@ -64,7 +66,14 @@ function startConfig() {
 
 function stopTimer() {
   clearInterval(interval);
-  console.log(Number(currentTimeValue));
+  //   currentTimeValue =
+  //     currentM.textContent + currentS.textContent + currentMS.textContent;
+
+  //   if (Number(currentTimeValue) >= Number(bestTimeValue)) {
+  //     bestM.textContent = currentM.textContent;
+  //     bestS.textContent = currentS.textContent;
+  //     bestMS.textContent = currentMS.textContent;
+  //   }
   isShuffle = false;
 }
 
