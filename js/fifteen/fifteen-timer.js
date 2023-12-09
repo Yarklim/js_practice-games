@@ -30,6 +30,7 @@ function startTimer() {
     minutes++;
     currentM.innerHTML = '0' + minutes;
     seconds = 0;
+    currentS.innerHTML = '0' + seconds;
   }
   if (milliseconds > 99) {
     seconds++;
