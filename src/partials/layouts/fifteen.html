@@ -2,6 +2,7 @@
   <div class="container content--wrapper">
     <h1 class="fifteen__title">15 puzzles</h1>
     <div class="fifteen__content--wrapper">
+      <!-- Number Buttons -->
       <div class="fifteen__buttons--wrapper" id="fifteen">
         <button class="fifteen__button" data-matrix-id="1">
           <span>1</span>
@@ -53,6 +54,31 @@
         </button>
       </div>
     </div>
+
+    <!-- Timer -->
+    <div class="timer__container">
+      <div class="timer__wrapper">
+        <p class="timer__title">Current time:</p>
+
+        <span class="time__m" id="current-m">00</span>
+        <span class="time__dots">:</span>
+        <span class="time__s" id="current-s">00</span>
+        <span class="time__dots">:</span>
+        <span class="time__ms" id="current-ms">00</span>
+      </div>
+
+      <div class="timer__wrapper">
+        <p class="timer__title">Best time:</p>
+
+        <span class="time__m">00</span>
+        <span class="time__dots">:</span>
+        <span class="time__s">00</span>
+        <span class="time__dots">:</span>
+        <span class="time__ms">00</span>
+      </div>
+    </div>
+
+    <!-- Shuffle Button -->
     <button class="fifteen__shuffle" id="shuffle">SHUFFLE</button>
   </div>
 </section>
