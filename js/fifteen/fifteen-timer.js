@@ -26,7 +26,7 @@ function startTimer() {
   milliseconds++;
   currentMS.innerHTML = '0' + milliseconds;
 
-  if (seconds === 60) {
+  if (seconds > 59) {
     minutes++;
     currentM.innerHTML = '0' + minutes;
     seconds = 0;
@@ -56,12 +56,21 @@ function startTimer() {
 
 function startConfig() {
   stopTimer();
+  minutes = 0;
+  seconds = 0;
+  milliseconds = 0;
   currentMS.innerHTML = '00';
   currentS.innerHTML = '00';
   currentM.innerHTML = '00';
   isShuffle = true;
 
   game.addEventListener('click', getInterval);
+}
+
+function getInterval() {
+  if (!isShuffle) return;
+
+  interval = setInterval(startTimer, 10);
 }
 
 function stopTimer() {
@@ -74,13 +83,6 @@ function stopTimer() {
   //     bestS.textContent = currentS.textContent;
   //     bestMS.textContent = currentMS.textContent;
   //   }
-  isShuffle = false;
-}
-
-function getInterval() {
-  if (!isShuffle) return;
-
-  interval = setInterval(startTimer, 10);
 }
 
 // =========== Check changing className for stop interval ===========
