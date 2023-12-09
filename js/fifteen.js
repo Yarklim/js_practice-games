@@ -17,7 +17,7 @@ let matrix = getMatrix(buttonItems.map(el => Number(el.dataset.matrixId)));
 setPositionItem(matrix);
 
 /* ====== Shuffle ======*/
-const maxShuffleCount = 70;
+const maxShuffleCount = 100;
 let timer;
 let shuffled = false;
 const shuffledClassName = 'gameShuffle';
@@ -113,7 +113,8 @@ window.addEventListener('keydown', e => {
   setPositionItem(matrix);
 });
 
-/* ====== Helpers ======*/
+/* ====== HELPERS ======*/
+/* =====================*/
 function getMatrix(arr) {
   const matrix = [[], [], [], []];
   let x = 0;

@@ -198,8 +198,8 @@ body {
   padding: 5px;
   border-radius: 20px;
   background: linear-gradient(45deg, #244045, #2b4c52);
-  -webkit-box-shadow: 8px -8px 16px #223c41, -8px 8px 16px #2e5259;
-          box-shadow: 8px -8px 16px #223c41, -8px 8px 16px #2e5259;
+  -webkit-box-shadow: 4px -4px 6px rgba(28, 49, 53, 0.7607843137), -8px 8px 16px #2e5259;
+          box-shadow: 4px -4px 6px rgba(28, 49, 53, 0.7607843137), -8px 8px 16px #2e5259;
 }
 
 .fifteen__title {
@@ -246,7 +246,7 @@ body {
 }
 
 .fifteen__buttons--wrapper.fifteenWon .fifteen__button {
-  background-color: #32885d;
+  background-color: #29ad6b;
 }
 
 .fifteen__shuffle {
@@ -257,12 +257,12 @@ body {
   color: rgba(133, 240, 240, 0.884);
   border-radius: 10px;
   background: linear-gradient(45deg, #244045, #2b4c52);
-  -webkit-box-shadow: 2px -2px 10px #223c41, -4px 4px 10px #2e5259;
-          box-shadow: 2px -2px 10px #223c41, -4px 4px 10px #2e5259;
+  -webkit-box-shadow: 2px -2px 6px #192c30, -4px 4px 8px rgba(38, 67, 73, 0.5490196078);
+          box-shadow: 2px -2px 6px #192c30, -4px 4px 8px rgba(38, 67, 73, 0.5490196078);
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-.fifteen__shuffle:hover, .fifteen__shuffle:focus {
+.fifteen__shuffle:hover, s .fifteen__shuffle:focus {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
