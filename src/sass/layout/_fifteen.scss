@@ -106,10 +106,11 @@
   }
 }
 
+// ========= Timer =========
+
 .timer__container {
   display: flex;
   justify-content: center;
-  //   column-gap: 1%;
 
   margin: 10px auto 20px auto;
 }
@@ -125,6 +126,13 @@
   & span {
     color: rgb(196, 234, 236);
   }
+}
+
+.timer__wrapper.beat__best-time span {
+  color: #60da9d;
+}
+.timer__wrapper.no-beat__best-time span {
+  color: #ec848d;
 }
 
 .timer__title {

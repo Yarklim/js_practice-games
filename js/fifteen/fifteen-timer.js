@@ -6,6 +6,7 @@ const currentMS = document.querySelector('#current-ms');
 const bestM = document.querySelector('#best-m');
 const bestS = document.querySelector('#best-s');
 const bestMS = document.querySelector('#best-ms');
+const currentTime = document.querySelectorAll('.timer__wrapper');
 
 let isShuffle = false;
 
@@ -16,7 +17,7 @@ let milliseconds = 0;
 let interval;
 
 let currentTimeValue = null;
-let bestTimeValue = bestM.textContent + bestS.textContent + bestMS.textContent;
+let bestTimeValue = 0;
 
 shuffleBtn.addEventListener('click', startConfig);
 
@@ -65,6 +66,9 @@ function startConfig() {
   currentM.innerHTML = '00';
   isShuffle = true;
 
+  currentTime[0].classList.remove('beat__best-time');
+  currentTime[0].classList.remove('no-beat__best-time');
+
   game.addEventListener('click', getInterval);
 }
 
@@ -76,14 +80,32 @@ function getInterval() {
 
 function stopTimer() {
   clearInterval(interval);
-  //   currentTimeValue =
-  //     currentM.textContent + currentS.textContent + currentMS.textContent;
 
-  //   if (Number(currentTimeValue) >= Number(bestTimeValue)) {
-  //     bestM.textContent = currentM.textContent;
-  //     bestS.textContent = currentS.textContent;
-  //     bestMS.textContent = currentMS.textContent;
-  //   }
+  currentTimeValue =
+    currentM.textContent + currentS.textContent + currentMS.textContent;
+
+  if (!bestTimeValue) {
+    bestTimeValue = Number(currentTimeValue);
+    bestM.innerHTML = currentM.textContent;
+    bestS.textContent = currentS.textContent;
+    bestMS.textContent = currentMS.textContent;
+  }
+  currentTimeValue =
+    currentM.textContent + currentS.textContent + currentMS.textContent;
+
+  if (Number(currentTimeValue) <= bestTimeValue) {
+    bestTimeValue = Number(currentTimeValue);
+    bestM.textContent = currentM.textContent;
+    bestS.textContent = currentS.textContent;
+    bestMS.textContent = currentMS.textContent;
+  }
+
+  if (Number(currentTimeValue) <= bestTimeValue && bestTimeValue !== 0) {
+    currentTime[0].classList.add('beat__best-time');
+  }
+  if (Number(currentTimeValue) > bestTimeValue && bestTimeValue !== 0) {
+    currentTime[0].classList.add('no-beat__best-time');
+  }
 }
 
 // =========== Check changing className for stop interval ===========

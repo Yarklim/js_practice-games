@@ -296,6 +296,14 @@ body {
   color: rgb(196, 234, 236);
 }
 
+.timer__wrapper.beat__best-time span {
+  color: #60da9d;
+}
+
+.timer__wrapper.no-beat__best-time span {
+  color: #ec848d;
+}
+
 .timer__title {
   margin-right: 5px;
 }
