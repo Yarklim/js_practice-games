@@ -94,12 +94,6 @@ function stopTimer() {
     bestM.textContent = currentM.textContent;
     bestS.textContent = currentS.textContent;
     bestMS.textContent = currentMS.textContent;
-
-    saveInLocaleStorage(
-      bestM.textContent,
-      bestS.textContent,
-      bestMS.textContent
-    );
   }
 
   if (currentTimeValue <= bestTimeValue && bestTimeValue !== 0) {
