@@ -81,28 +81,29 @@ function getInterval() {
 function stopTimer() {
   clearInterval(interval);
 
-  currentTimeValue =
-    currentM.textContent + currentS.textContent + currentMS.textContent;
+  currentTimeValue = Number(
+    currentM.textContent + currentS.textContent + currentMS.textContent
+  );
 
   if (!bestTimeValue) {
-    bestTimeValue = Number(currentTimeValue);
-    bestM.textContent = currentM.textContent;
-    bestS.textContent = currentS.textContent;
-    bestMS.textContent = currentMS.textContent;
-  }
-  currentTimeValue =
-    currentM.textContent + currentS.textContent + currentMS.textContent;
-
-  if (Number(currentTimeValue) <= bestTimeValue) {
-    bestTimeValue = Number(currentTimeValue);
+    bestTimeValue = currentTimeValue;
     bestM.textContent = currentM.textContent;
     bestS.textContent = currentS.textContent;
     bestMS.textContent = currentMS.textContent;
   }
 
-  if (Number(currentTimeValue) <= bestTimeValue && bestTimeValue !== 0) {
+  if (currentTimeValue <= bestTimeValue && bestTimeValue !== 0) {
+    bestTimeValue = currentTimeValue;
+    bestM.textContent = currentM.textContent;
+    bestS.textContent = currentS.textContent;
+    bestMS.textContent = currentMS.textContent;
+
     currentTime[0].classList.add('beat__best-time');
   }
+
+  //   if (Number(currentTimeValue) <= bestTimeValue && bestTimeValue !== 0) {
+  //     currentTime[0].classList.add('beat__best-time');
+  //   }
   if (Number(currentTimeValue) > bestTimeValue && bestTimeValue !== 0) {
     currentTime[0].classList.add('no-beat__best-time');
   }
