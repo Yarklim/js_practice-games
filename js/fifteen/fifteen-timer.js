@@ -8,6 +8,10 @@ const bestS = document.querySelector('#best-s');
 const bestMS = document.querySelector('#best-ms');
 const currentTime = document.querySelectorAll('.timer__wrapper');
 
+bestM.innerHTML = localStorage.getItem('min') || '00';
+bestS.innerHTML = localStorage.getItem('sec') || '00';
+bestMS.innerHTML = localStorage.getItem('ms') || '00';
+
 let isShuffle = false;
 
 let minutes = 0;
@@ -90,6 +94,12 @@ function stopTimer() {
     bestM.textContent = currentM.textContent;
     bestS.textContent = currentS.textContent;
     bestMS.textContent = currentMS.textContent;
+
+    saveInLocaleStorage(
+      bestM.textContent,
+      bestS.textContent,
+      bestMS.textContent
+    );
   }
 
   if (currentTimeValue <= bestTimeValue && bestTimeValue !== 0) {
@@ -98,15 +108,24 @@ function stopTimer() {
     bestS.textContent = currentS.textContent;
     bestMS.textContent = currentMS.textContent;
 
+    saveInLocaleStorage(
+      bestM.textContent,
+      bestS.textContent,
+      bestMS.textContent
+    );
+
     currentTime[0].classList.add('beat__best-time');
   }
 
-  //   if (Number(currentTimeValue) <= bestTimeValue && bestTimeValue !== 0) {
-  //     currentTime[0].classList.add('beat__best-time');
-  //   }
   if (Number(currentTimeValue) > bestTimeValue && bestTimeValue !== 0) {
     currentTime[0].classList.add('no-beat__best-time');
   }
+}
+
+function saveInLocaleStorage(min, sec, ms) {
+  localStorage.setItem('min', min);
+  localStorage.setItem('sec', sec);
+  localStorage.setItem('ms', ms);
 }
 
 // =========== Check changing className for stop interval ===========

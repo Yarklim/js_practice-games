@@ -115,7 +115,6 @@ body {
   font-weight: 400;
   line-height: 1.67;
   color: var(--titles-color);
-  background-color: #39626a;
   scroll-behavior: smooth;
 }
 
@@ -172,7 +171,8 @@ body {
 
 .fifteen {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   padding-top: 50px;
   background-color: #39626a;
   -webkit-user-select: none;
