@@ -86,7 +86,7 @@ function stopTimer() {
 
   if (!bestTimeValue) {
     bestTimeValue = Number(currentTimeValue);
-    bestM.innerHTML = currentM.textContent;
+    bestM.textContent = currentM.textContent;
     bestS.textContent = currentS.textContent;
     bestMS.textContent = currentMS.textContent;
   }
