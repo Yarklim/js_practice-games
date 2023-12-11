@@ -13,6 +13,7 @@ bestS.innerHTML = localStorage.getItem('sec') || '00';
 bestMS.innerHTML = localStorage.getItem('ms') || '00';
 
 let isShuffle = false;
+let isFirstGame = false;
 
 let minutes = 0;
 let seconds = 0;
@@ -20,8 +21,17 @@ let milliseconds = 0;
 
 let interval;
 
+let bestTimeValue = Number(
+  (localStorage.getItem('min') || '00') +
+    (localStorage.getItem('sec') || '00') +
+    (localStorage.getItem('ms') || '00')
+);
+
+if (bestTimeValue === 0) {
+  isFirstGame = true;
+}
+
 let currentTimeValue = null;
-let bestTimeValue = 0;
 
 shuffleBtn.addEventListener('click', startConfig);
 
@@ -89,14 +99,12 @@ function stopTimer() {
     currentM.textContent + currentS.textContent + currentMS.textContent
   );
 
-  if (!bestTimeValue) {
-    bestTimeValue = currentTimeValue;
-    bestM.textContent = currentM.textContent;
-    bestS.textContent = currentS.textContent;
-    bestMS.textContent = currentMS.textContent;
-  }
-
-  if (currentTimeValue <= bestTimeValue && bestTimeValue !== 0) {
+  if (
+    (currentTimeValue !== 0 &&
+      currentTimeValue <= bestTimeValue &&
+      bestTimeValue !== 0) ||
+    bestTimeValue === 0
+  ) {
     bestTimeValue = currentTimeValue;
     bestM.textContent = currentM.textContent;
     bestS.textContent = currentS.textContent;

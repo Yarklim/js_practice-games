@@ -10,6 +10,12 @@
   user-select: none;
 }
 
+// .content--wrapper {
+//   @media screen and (min-width: 768px) {
+//     margin-left: 180px;
+//   }
+// }
+
 .content--wrapper.gameShuffle {
   pointer-events: none;
   opacity: 0.7;
