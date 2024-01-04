@@ -5,7 +5,7 @@
 
   padding-top: 50px;
 
-  background-color: #39626a;
+  background-color: #191c1c;
 
   user-select: none;
 }
@@ -35,7 +35,7 @@
 
   border-radius: 20px;
   background: linear-gradient(45deg, #244045, #2b4c52);
-  box-shadow: 4px -4px 6px #1c3135c2, -8px 8px 16px #2e5259;
+  box-shadow: 1px 1px 3px #1c3135c2, 2px 2px 5px #2e5259;
 }
 
 .fifteen__title {
@@ -59,6 +59,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  //   z-index: 5;
 
   font-weight: 600;
   color: rgba(133, 240, 240, 0.884);
@@ -99,7 +100,7 @@
 
   border-radius: 10px;
   background: linear-gradient(45deg, #244045, #2b4c52);
-  box-shadow: 2px -2px 6px #192c30, -4px 4px 8px #2643498c;
+  box-shadow: 2px 2px 6px #192c30, 4px 4px 8px #2643498c;
 
   transition: all 0.3s ease;
 
