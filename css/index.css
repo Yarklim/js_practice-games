@@ -609,8 +609,7 @@ body {
 }
 
 .match__cards--item {
-  -ms-flex-preferred-size: 60px;
-      flex-basis: 60px;
+  width: 60px;
   height: 60px;
   border: 1px solid #000;
   border-radius: 6px;
