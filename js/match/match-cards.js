@@ -6,14 +6,16 @@ const countMinusEl = document.querySelector('[data-counter-minus]');
 const countPlusEl = document.querySelector('[data-counter-plus]');
 
 let cardsCount = count;
-const cardsList = onMakeCardsList();
+const randomCardsLayout = makeRandomCardsLayout();
+
+cardsListEl.innerHTML = randomCardsLayout.join('');
 
 countPlusEl.addEventListener('click', () => {
   if (cardsCount === 20) return;
 
   cardsCount += 1;
 
-  onMakeCardsList();
+  makeRandomCardsLayout();
 });
 
 countMinusEl.addEventListener('click', () => {
@@ -21,15 +23,26 @@ countMinusEl.addEventListener('click', () => {
 
   cardsCount -= 1;
 
-  onMakeCardsList();
+  makeRandomCardsLayout();
 });
 
-// ========= Make Cards List ==========
-function onMakeCardsList() {
-  const list = [];
+// ========= Make Random Cards Layout =========
+function makeRandomCardsLayout() {
+  const randomList = [];
+
   for (let i = 0; i < cardsCount; i++) {
-    list.push(cardItemEl(i + 1));
+    randomList.push(cardItemEl(i + 1), cardItemEl(i + 1));
   }
-  cardsListEl.innerHTML = list.join('');
-  return list;
+
+  for (let i = 0; i < randomList.length; i++) {
+    let tempPos = randomList[i];
+    const randomPos = Math.floor(Math.random() * randomList.length);
+
+    randomList[i] = randomList[randomPos];
+    randomList[randomPos] = tempPos;
+  }
+
+  cardsListEl.innerHTML = randomList.join('');
+
+  return randomList;
 }

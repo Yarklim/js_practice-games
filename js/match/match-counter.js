@@ -2,7 +2,7 @@ const countMinusEl = document.querySelector('[data-counter-minus]');
 const countPlusEl = document.querySelector('[data-counter-plus]');
 const countInputEl = document.querySelector('.match__counter--count');
 
-export let count = 4;
+export let count = Number(localStorage.getItem('matchCount')) || 4;
 
 countInputEl.textContent = count;
 
@@ -21,6 +21,7 @@ function incrementCount() {
   }
 
   count += 1;
+  localStorage.setItem('matchCount', JSON.stringify(count));
   countMinusEl.classList.remove('disabled');
   countInputEl.textContent = count;
 }
@@ -33,6 +34,7 @@ function decrementCount() {
   }
 
   count -= 1;
+  localStorage.setItem('matchCount', JSON.stringify(count));
   countPlusEl.classList.remove('disabled');
   countInputEl.textContent = count;
 }
