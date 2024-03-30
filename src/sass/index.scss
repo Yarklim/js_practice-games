@@ -1,9 +1,12 @@
 // ==== Base styles ====
 @import './base/reset';
 @import './base/common';
+@import './base/section';
 @import './base/container';
 
 // ==== Layouts ====
 @import './layout/header';
+@import './layout/main';
 @import './layout/fifteen';
+@import './layout/match';
 @import './layout/footer';

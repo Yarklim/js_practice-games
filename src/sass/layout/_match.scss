@@ -1,0 +1,102 @@
+.match {
+  width: 100%;
+  height: 100dvh;
+
+  padding: 10px 10px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.match__wrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match__title {
+  margin-top: 20px; // 20 -
+
+  font-size: 22px; // 22 -
+  font-weight: 500;
+}
+
+// ============== Counter ==============
+.match__counter--title {
+  margin-top: 20px; // 20 -
+
+  font-size: 16px; // 16 -
+  font-weight: 500;
+}
+
+.match__counter--wrapper {
+  margin-top: 10px; // 10 -
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 20px;
+}
+
+.match__counter--btn {
+  color: #000;
+  transition: transform 0.3s ease;
+  &:active {
+    transform: scale(0.9);
+  }
+
+  & .match__counter--icon {
+    width: 32px; // 32 -
+
+    fill: currentColor;
+  }
+
+  &.disabled {
+    color: #a7a7a7;
+  }
+}
+
+.match__counter--count {
+  width: 40px; // 40 -
+  height: 40px; // 40 -
+
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px; // 14 -
+  font-weight: 500;
+
+  border: 1px solid #000;
+  border-radius: 8px;
+
+  user-select: none;
+}
+
+.match__counter--info {
+  margin-top: 5px;
+
+  font-size: 12px; // 12 -
+}
+// ================ Cards ==================
+.match__cards--list {
+  width: 100%;
+
+  margin-top: 30px; // 30 -
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.match__cards--item {
+  flex-basis: 60px; // 60 -
+  height: 60px; // 60 -
+
+  border: 1px solid #000;
+  border-radius: 6px;
+}

@@ -1,0 +1,50 @@
+<section class="match">
+  <div class="match__wrapper">
+    <!-- Go Back Button -->
+    <a href="./index.html" class="go-back__link">
+      <svg class="go-back__icon" viewBox="0 0 100 100">
+        <path
+          d="M50 11a39 39 0 1 0 39 39 39.05 39.05 0 0 0-39-39Zm12 42H45.24l3.88 3.88a3 3 0 0 1 0 4.24 3 3 0 0 1-4.24 0l-9-9a3.44 3.44 0 0 1-.38-.46l-.12-.22c-.05-.1-.11-.19-.15-.29s-.06-.2-.09-.3a2.58 2.58 0 0 1-.08-.26 2.93 2.93 0 0 1 0-1.18 2.58 2.58 0 0 1 .08-.26c0-.1 0-.2.09-.3s.1-.19.15-.29l.12-.22a3.44 3.44 0 0 1 .38-.46l9-9a3 3 0 0 1 4.24 4.24L45.24 47H62a3 3 0 0 1 0 6Z"
+        />
+      </svg>
+      <span>BACK</span>
+    </a>
+
+    <!-- Title -->
+    <h2 class="match__title">Matching Game</h2>
+
+    <!-- Counter -->
+    <p class="match__counter--title">Numbers of pairs</p>
+    <div class="match__counter--wrapper">
+      <button class="match__counter--btn" data-counter-minus>
+        <svg viewBox="0 0 100 100" class="match__counter--icon">
+          <path
+            d="M72 50c0 1.1-.9 2-2 2H30c-1.1 0-2-.9-2-2s.9-2 2-2h40c1.1 0 2 .9 2 2zm16 0c0 21-17 38-38 38S12 71 12 50s17-38 38-38 38 17 38 38zm-4 0c0-18.8-15.2-34-34-34S16 31.2 16 50s15.2 34 34 34 34-15.2 34-34z"
+          />
+          <path
+            fill="#00F"
+            d="M1364-1210V474H-420v-1684h1784m8-8H-428V482h1800v-1700z"
+          />
+        </svg>
+      </button>
+
+      <span class="match__counter--count"></span>
+
+      <button class="match__counter--btn" data-counter-plus>
+        <svg viewBox="0 0 100 100" class="match__counter--icon">
+          <path
+            d="M72 50c0 1.1-.9 2-2 2H52v18c0 1.1-.9 2-2 2s-2-.9-2-2V52H30c-1.1 0-2-.9-2-2s.9-2 2-2h18V30c0-1.1.9-2 2-2s2 .9 2 2v18h18c1.1 0 2 .9 2 2zm16 0c0 21-17 38-38 38S12 71 12 50s17-38 38-38 38 17 38 38zm-4 0c0-18.8-15.2-34-34-34S16 31.2 16 50s15.2 34 34 34 34-15.2 34-34z"
+          />
+          <path
+            fill="#00F"
+            d="M1504-1210V474H-280v-1684h1784m8-8H-288V482h1800v-1700z"
+          />
+        </svg>
+      </button>
+    </div>
+    <span class="match__counter--info">(min - 4, max - 20)</span>
+
+    <!-- Cards -->
+    <ul class="match__cards--list"></ul>
+  </div>
+</section>

@@ -31,3 +31,24 @@ body {
 .main {
   flex-grow: 1;
 }
+
+// ========== Go Back Btn ===========
+.go-back__link {
+  display: flex;
+  align-items: center;
+  gap: 0 5px; // 5 -
+
+  align-self: start;
+
+  fill: #316068;
+
+  & span {
+    font-size: 14px; // 14 -
+    color: #316068;
+  }
+}
+
+.go-back__icon {
+  width: 20px; // 20 -
+  height: 20px; // 20 -
+}

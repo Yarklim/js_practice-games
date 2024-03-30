@@ -1,0 +1,33 @@
+.games__wrapper {
+  width: 100%;
+
+  background-color: #222;
+}
+
+.games__list {
+  width: clamp(18.75rem, 15rem + 18.75vw, 37.5rem); // 300 - 600
+  height: clamp(18.75rem, 15rem + 18.75vw, 37.5rem); // 300 - 600
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; // 20 -
+}
+
+.games__item {
+  flex-basis: calc((100% - 20px) / 2);
+
+  transition: transform 0.3s ease;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.05);
+  }
+}
+
+.games__item--link {
+  width: 100%;
+}
