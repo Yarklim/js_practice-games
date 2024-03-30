@@ -1,2 +1,1 @@
-import './match-counter.js';
-import './match-cards';
+import './match-game';

@@ -99,4 +99,15 @@
 
   border: 1px solid #000;
   border-radius: 6px;
+  background-color: #ecf027;
+
+  transition: all 0.3s ease;
+
+  &.active {
+    background-color: #1ee4c9;
+  }
+
+  &.matched-cards {
+    background-color: #1ee438;
+  }
 }

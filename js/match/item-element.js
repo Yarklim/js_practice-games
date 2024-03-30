@@ -1,7 +1,5 @@
 export const cardItemEl = value => {
-  return `<li class="match__cards--item">
-  ${value}
-  </li>`;
+  return `<li class="match__cards--item">${value}</li>`;
 };
 // export const cardItemEl = value => {
 //   return `<li class="match__cards--item">

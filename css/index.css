@@ -613,4 +613,13 @@ body {
   height: 60px;
   border: 1px solid #000;
   border-radius: 6px;
+  background-color: #ecf027;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.match__cards--item.active {
+  background-color: #1ee4c9;
+}
+.match__cards--item.matched-cards {
+  background-color: #1ee438;
 }/*# sourceMappingURL=index.css.map */
