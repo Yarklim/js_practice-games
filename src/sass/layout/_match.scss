@@ -105,11 +105,31 @@
 
   transition: all 0.3s ease;
 
+  cursor: pointer;
+
+  user-select: none;
+
   &.active {
     background-color: #1ee4c9;
+
+    & .match__card--img {
+      opacity: 1;
+    }
   }
 
   &.matched-cards {
     background-color: #1ee438;
+
+    & .match__card--img {
+      opacity: 1;
+    }
   }
+}
+
+.match__card--img {
+  opacity: 0;
+
+  user-select: none;
+
+  transition: opacity 0.3s ease;
 }

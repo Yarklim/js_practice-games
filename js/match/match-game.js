@@ -1,4 +1,5 @@
 import { cardItemEl } from './item-element';
+import { openModal } from './congrats-modal';
 
 const countMinusEl = document.querySelector('[data-counter-minus]');
 const countPlusEl = document.querySelector('[data-counter-plus]');
@@ -52,7 +53,7 @@ function decrementCount() {
 }
 
 // ========= Make Random Cards Layout =========
-function makeRandomCardsLayout() {
+export function makeRandomCardsLayout() {
   const randomList = [];
 
   for (let i = 0; i < count; i++) {
@@ -124,6 +125,6 @@ function onClickCard(card, cardsItems) {
   if (
     cardsItems.length === document.querySelectorAll('.matched-cards').length
   ) {
-    setTimeout(() => alert('You Win!'), 300);
+    openModal();
   }
 }
