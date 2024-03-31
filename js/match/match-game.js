@@ -5,9 +5,17 @@ const countMinusEl = document.querySelector('[data-counter-minus]');
 const countPlusEl = document.querySelector('[data-counter-plus]');
 const countInputEl = document.querySelector('.match__counter--count');
 const cardsListEl = document.querySelector('.match__cards--list');
+const currentStepsEl = document.querySelector('.match__current-steps--value');
+const bestStepsEl = document.querySelector('.match__best-steps--value');
 
 let count = Number(localStorage.getItem('matchCount')) || 4;
+let bestStepsCount = Number(localStorage.getItem(`steps-count-${count}`)) || 0;
+let currentStepsCount = 0;
 
+let isFirstGame = bestStepsCount === 0;
+
+currentStepsEl.textContent = currentStepsCount;
+bestStepsEl.textContent = bestStepsCount;
 countInputEl.textContent = count;
 
 const randomCardsLayout = makeRandomCardsLayout();
@@ -35,6 +43,7 @@ function incrementCount() {
   countInputEl.textContent = count;
 
   makeRandomCardsLayout();
+  location.reload();
 }
 
 function decrementCount() {
@@ -50,6 +59,7 @@ function decrementCount() {
   countInputEl.textContent = count;
 
   makeRandomCardsLayout();
+  location.reload();
 }
 
 // ========= Make Random Cards Layout =========
@@ -90,6 +100,8 @@ getCardItem();
 
 // ============= Click on Card =============
 function onClickCard(card, cardsItems) {
+  countStepsStart();
+
   if (
     card.classList.contains('active') ||
     card.classList.contains('matched-cards')
@@ -127,4 +139,29 @@ function onClickCard(card, cardsItems) {
   ) {
     openModal();
   }
+}
+
+// ================== Steps Counter ==================
+function countStepsStart() {
+  currentStepsCount += 1;
+
+  currentStepsEl.textContent = currentStepsCount;
+}
+
+export function countStepsStop() {
+  if (isFirstGame) {
+    localStorage.setItem(
+      `steps-count-${count}`,
+      JSON.stringify(currentStepsCount)
+    );
+  }
+
+  if (currentStepsCount <= bestStepsCount) {
+    localStorage.setItem(
+      `steps-count-${count}`,
+      JSON.stringify(currentStepsCount)
+    );
+  }
+
+  currentStepsCount = 0;
 }

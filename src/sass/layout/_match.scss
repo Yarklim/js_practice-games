@@ -4,6 +4,7 @@
   padding: clamp(0.625rem, 0.125rem + 2.5vw, 3.125rem); // 10 - 50
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -131,4 +132,25 @@
   pointer-events: none;
 
   transition: opacity 0.3s ease;
+}
+
+// ============== Steps Counter ===============
+.match__step-counter {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.match__best-steps {
+  margin-left: 20px;
+}
+
+.match__current-steps--value,
+.match__best-steps--value {
+  margin-left: 5px;
+
+  font-size: 18px;
+  font-weight: 600;
 }

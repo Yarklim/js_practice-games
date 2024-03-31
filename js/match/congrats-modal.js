@@ -1,4 +1,4 @@
-import { makeRandomCardsLayout } from './match-game';
+import { makeRandomCardsLayout, countStepsStop } from './match-game';
 
 const backdropEl = document.querySelector('.backdrop');
 const modalCloseEl = document.querySelector('.modal__close');
@@ -18,7 +18,9 @@ export function openModal() {
 }
 
 export function closeModal() {
+  countStepsStop();
   makeRandomCardsLayout();
+  location.reload();
   backdropEl.classList.add('is-hidden');
 }
 
