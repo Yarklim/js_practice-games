@@ -187,7 +187,6 @@ body {
   left: 50%;
   top: 50%;
   width: clamp(18.75rem, 11.25rem + 37.5vw, 56.25rem);
-  max-height: 500px;
   padding: clamp(2.5rem, 2rem + 2.5vw, 5rem);
   background: #1a7c27;
   -webkit-box-shadow: 2px 4px 4px rgba(2, 10, 5, 0.12), 1px 3px 3px rgba(1, 12, 7, 0.14), 1px 2px 1px rgba(2, 7, 3, 0.2);
@@ -605,7 +604,6 @@ body {
 }
 
 .match__counter--title {
-  margin-top: 10px;
   font-size: clamp(1rem, 0.8rem + 1vw, 2rem);
   font-weight: 500;
 }
@@ -621,7 +619,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0 20px;
+  gap: 0 10px;
 }
 
 .match__counter--btn {
@@ -719,6 +717,7 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  pointer-events: none;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }/*# sourceMappingURL=index.css.map */
