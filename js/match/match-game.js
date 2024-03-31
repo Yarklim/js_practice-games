@@ -56,7 +56,7 @@ function makeRandomCardsLayout() {
   const randomList = [];
 
   for (let i = 0; i < count; i++) {
-    randomList.push(cardItemEl(i + 1), cardItemEl(i + 1));
+    randomList.push(cardItemEl(i), cardItemEl(i));
   }
 
   for (let i = 0; i < randomList.length; i++) {
@@ -112,7 +112,10 @@ function onClickCard(card, cardsItems) {
   }
 
   if (firstCard && secondCard) {
-    if (firstCard.textContent === secondCard.textContent) {
+    if (
+      firstCard.getAttribute('data-value') ===
+      secondCard.getAttribute('data-value')
+    ) {
       firstCard.classList.add('matched-cards');
       secondCard.classList.add('matched-cards');
     }
