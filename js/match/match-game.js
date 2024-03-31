@@ -100,7 +100,12 @@ getCardItem();
 
 // ============= Click on Card =============
 function onClickCard(card, cardsItems) {
-  countStepsStart();
+  if (
+    !card.classList.contains('active') &&
+    !card.classList.contains('matched-cards')
+  ) {
+    countStepsStart();
+  }
 
   if (
     card.classList.contains('active') ||
