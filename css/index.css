@@ -575,6 +575,8 @@ body {
 
 .match {
   width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
   padding: clamp(0.625rem, 0.125rem + 2.5vw, 3.125rem);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -583,9 +585,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  background: #16a085; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#f4d03f), to(#16a085));
+  background: linear-gradient(to right, #f4d03f, #16a085); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .match__wrapper {
@@ -642,7 +644,7 @@ body {
   fill: currentColor;
 }
 .match__counter--btn.disabled {
-  color: #a7a7a7;
+  color: #888787;
 }
 
 .match__counter--count {
