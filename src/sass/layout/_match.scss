@@ -167,3 +167,16 @@
   font-size: 18px;
   font-weight: 600;
 }
+
+.match__result {
+  display: flex;
+  justify-content: center;
+
+  color: #cdd9db;
+}
+
+.match__result--steps {
+  margin-left: 6px;
+
+  font-weight: 600;
+}

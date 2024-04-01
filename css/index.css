@@ -750,4 +750,19 @@ body {
   margin-left: 5px;
   font-size: 18px;
   font-weight: 600;
+}
+
+.match__result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #cdd9db;
+}
+
+.match__result--steps {
+  margin-left: 6px;
+  font-weight: 600;
 }/*# sourceMappingURL=index.css.map */
