@@ -144,8 +144,10 @@ export function startGame() {
     if (
       cardsItems.length === document.querySelectorAll('.matched-cards').length
     ) {
-      openModal(currentStepsCount);
-      countStepsStop();
+      setTimeout(() => {
+        openModal(currentStepsCount);
+        countStepsStop();
+      }, 300);
     }
   }
 
