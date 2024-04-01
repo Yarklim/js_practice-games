@@ -1,0 +1,57 @@
+<section class="tictactoe">
+  <div class="container tictactoe__wrapper">
+    <!-- Go Back Button -->
+    <a href="./index.html" class="go-back__link">
+      <svg class="go-back__icon" viewBox="0 0 100 100">
+        <path
+          d="M50 11a39 39 0 1 0 39 39 39.05 39.05 0 0 0-39-39Zm12 42H45.24l3.88 3.88a3 3 0 0 1 0 4.24 3 3 0 0 1-4.24 0l-9-9a3.44 3.44 0 0 1-.38-.46l-.12-.22c-.05-.1-.11-.19-.15-.29s-.06-.2-.09-.3a2.58 2.58 0 0 1-.08-.26 2.93 2.93 0 0 1 0-1.18 2.58 2.58 0 0 1 .08-.26c0-.1 0-.2.09-.3s.1-.19.15-.29l.12-.22a3.44 3.44 0 0 1 .38-.46l9-9a3 3 0 0 1 4.24 4.24L45.24 47H62a3 3 0 0 1 0 6Z"
+        />
+      </svg>
+      <span>BACK</span>
+    </a>
+
+    <!-- Title -->
+    <h2 class="tictactoe__title">Tic Tac Toe</h2>
+
+    <!-- Сhoice of opponent -->
+    <p class="opponent__choise--title">Opponent level</p>
+
+    <ul class="opponent__list">
+      <li class="opponent__item">
+        <img
+          class="opponent__item--img"
+          src="../assets/images/tic-tac-toe/easy.jpg"
+          alt="easy"
+          class="opponent__img"
+          width="100"
+          height="100"
+        />
+        <span class="opponent__level easy">Easy</span>
+      </li>
+      <li class="opponent__item active">
+        <img
+          class="opponent__item--img"
+          src="../assets/images/tic-tac-toe/hard.jpg"
+          alt="hard"
+          class="opponent__img"
+          width="100"
+          height="100"
+        />
+        <span class="opponent__level hard">Hard</span>
+      </li>
+    </ul>
+
+    <!-- Game Field -->
+    <ul class="titactoe__field">
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+      <li class="tictactoe__cell"></li>
+    </ul>
+  </div>
+</section>
