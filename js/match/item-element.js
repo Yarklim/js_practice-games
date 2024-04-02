@@ -1,3 +1,5 @@
+import * as img from '../../assets/images/match/index';
+
 const cardsData = [
   {
     src: 'https://res.cloudinary.com/doepexhxk/image/upload/v1711857850/JS-Games/1_fwr9yt.png',
@@ -63,10 +65,19 @@ const cardsData = [
 
 export const cardItemEl = value => {
   return `<li class="match__cards--item" data-value='${value}'>
-  <img src=${cardsData[value].src}
+  <img src=${img['img' + value]}
   alt="card"
   class="match__card--img"
   width="200"
   height="200" />
   </li>`;
 };
+// export const cardItemEl = value => {
+//   return `<li class="match__cards--item" data-value='${value}'>
+//   <img src=${cardsData[value].src}
+//   alt="card"
+//   class="match__card--img"
+//   width="200"
+//   height="200" />
+//   </li>`;
+// };

@@ -67,8 +67,8 @@
     opacity: 1;
   }
 
-  &.active .opponent__item--img {
-    border: 4px solid #0db0f0;
+  &.active-level .opponent__item--img {
+    border: 3px solid #ececec;
 
     opacity: 1;
   }
@@ -97,11 +97,11 @@
   font-weight: 600;
 
   &.easy {
-    color: #42ee84;
+    color: #ececec;
   }
 
   &.hard {
-    color: #f02424;
+    color: #ececec;
   }
 }
 
