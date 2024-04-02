@@ -1,1 +1,1 @@
-{"mappings":"","sources":["js/tictactoe/index.js"],"sourcesContent":[""],"names":[],"version":3,"file":"tic-tac-toe-page.94d4b550.js.map"}
+{"mappings":"","sources":["js/tictactoe/index.js","js/tictactoe/tictactoe-game.js"],"sourcesContent":["import './tictactoe-game';\n",""],"names":[],"version":3,"file":"tic-tac-toe-page.94d4b550.js.map"}
