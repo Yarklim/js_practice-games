@@ -53,5 +53,29 @@
       <li class="tictactoe__cell"></li>
       <li class="tictactoe__cell"></li>
     </ul>
+
+    <!-- Score -->
+    <div class="tictactoe__score">
+      <div class="score__wrapper">
+        <p class="score__text">Player Wins:</p>
+        <span class="score__value" data-player-value>0</span>
+      </div>
+      <div class="score__wrapper">
+        <p class="score__text">Comp Wins:</p>
+        <span class="score__value" data-comp-value>0</span>
+      </div>
+    </div>
+    <div class="score__wrapper draw">
+      <p class="score__text">Draw:</p>
+      <span class="score__value" data-draw-value>0</span>
+    </div>
+  </div>
+
+  <!-- Congrats Modal -->
+  <div class="backdrop is-hidden">
+    <div class="modal">
+      <p class="modal__content-text"></p>
+    </div>
+    <button class="modal__close">OK</button>
   </div>
 </section>
