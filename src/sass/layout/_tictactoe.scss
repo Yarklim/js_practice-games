@@ -123,6 +123,10 @@
   width: calc((100% - clamp(0.313rem, 0.188rem + 0.63vw, 0.938rem) * 2) / 3);
   height: calc((100% - clamp(0.313rem, 0.188rem + 0.63vw, 0.938rem) * 2) / 3);
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border: 1px solid #fff;
   border-radius: 6px;
 
