@@ -1,14 +1,22 @@
-const gameLevelEl = document.querySelectorAll('.opponent__item');
+import { changeGameLevel } from './titactoe-level';
+import { CROSS_EL, ZERO_EL } from './utilities';
 
-gameLevelEl.forEach(el => el.addEventListener('click', changeGameLevel));
+const fieldCells = document.querySelectorAll('[data-tictactoe-cell]');
 
-function changeGameLevel(e) {
-  const currentLevel = document.querySelector('.active-level');
+changeGameLevel();
 
-  console.log(e.target.closest('li'));
+let crossStep = true;
 
-  //   if (e.target.closest('li') !== currentLevel) {
-  //     currentLevel.classList.remove('.active-level');
-  //     e.target.closest('li').classList.add('.active-level');
-  //   }
-}
+fieldCells.forEach(cell => {
+  cell.addEventListener('click', () => {
+    if (crossStep) {
+      cell.innerHTML = CROSS_EL;
+      crossStep = false;
+    } else {
+      cell.innerHTML = ZERO_EL;
+      crossStep = true;
+    }
+  });
+});
+
+// ========== Draw Cross or Cell =========
