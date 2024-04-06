@@ -4,7 +4,13 @@ import { CROSS_EL, ZERO_EL, WINNING_COMB } from './utilities';
 const fieldCells = document.querySelectorAll('[data-tictactoe-cell]');
 const drawResultEl = document.querySelector('[data-draw-value]');
 
-changeGameLevel();
+let gameLevel = changeGameLevel() || localStorage.getItem('tictactoe-level');
+let playerMoveFirst = false;
+let compMoveFirst = true;
+let compMove = true;
+let playerMove = false;
+const movesArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+let otherCompMoves = null;
 
 let crossStep = true;
 let stepsCount = 0;
@@ -12,35 +18,92 @@ let stepsCount = 0;
 let gameResultDrawValue = Number(localStorage.getItem('tictactoe-draw')) || 0;
 drawResultEl.textContent = gameResultDrawValue;
 
-fieldCells.forEach(cell => {
-  cell.addEventListener('click', () => setCrossOrZero(cell));
-});
-
-// ========== set Cross Or Zero ==========
-function setCrossOrZero(cell) {
-  if (
-    crossStep &&
-    !cell.classList.contains('x') &&
-    !cell.classList.contains('o')
-  ) {
-    cell.innerHTML = CROSS_EL;
-    cell.classList.add('x');
-    stepsCount += 1;
-    crossStep = false;
-  } else if (
-    !crossStep &&
-    !cell.classList.contains('x') &&
-    !cell.classList.contains('o')
-  ) {
-    cell.innerHTML = ZERO_EL;
-    cell.classList.add('o');
-    stepsCount += 1;
-    crossStep = true;
-  } else {
-    return;
+// ========== Start Game ===========
+function startGame() {
+  if (gameLevel === 'easy' && !playerMoveFirst) {
+    compFirstMovesEasyLevel();
   }
-  gameResult();
 }
+
+startGame();
+
+// ========== Player Move ==========
+function playerMoves() {
+  fieldCells.forEach((cell, idx) => {
+    cell.addEventListener('click', () => {
+      if (
+        !crossStep &&
+        !cell.classList.contains('x') &&
+        !cell.classList.contains('o')
+      ) {
+        cell.innerHTML = ZERO_EL;
+        cell.classList.add('o');
+        stepsCount += 1;
+        movesArr[idx] = 'busy';
+
+        crossStep = true;
+        compMove = true;
+        playerMove = false;
+
+        setTimeout(() => {
+          compFirstMovesEasyLevel();
+        }, 500);
+      } else {
+        return;
+      }
+
+      gameResult();
+    });
+  });
+}
+
+function filterMoves() {
+  otherCompMoves = movesArr.filter(el => el !== 'busy');
+}
+
+// ============= Comp Moves ============
+function compFirstMovesEasyLevel() {
+  const firstCompMoves = [0, 2, 4, 6, 8];
+
+  filterMoves();
+
+  if (!playerMoveFirst && compMoveFirst && compMove) {
+    const idxCell = Math.floor(Math.random() * firstCompMoves.length);
+
+    fieldCells[firstCompMoves[idxCell]].innerHTML = CROSS_EL;
+    fieldCells[firstCompMoves[idxCell]].classList.add('x');
+    movesArr[firstCompMoves[idxCell]] = 'busy';
+
+    stepsCount += 1;
+    compMoveFirst = false;
+    compMove = false;
+    playerMove = true;
+    crossStep = false;
+
+    filterMoves();
+    playerMoves();
+  }
+
+  if (!playerMoveFirst && !playerMove && !compMoveFirst && compMove) {
+    const idxCell = Number(Math.floor(Math.random() * otherCompMoves.length));
+    console.log(movesArr);
+    console.log(otherCompMoves);
+    console.log(idxCell);
+
+    fieldCells[otherCompMoves[idxCell]].innerHTML = CROSS_EL;
+    fieldCells[otherCompMoves[idxCell]].classList.add('x');
+    movesArr[otherCompMoves[idxCell]] = 'busy';
+
+    stepsCount += 1;
+    compMove = false;
+    playerMove = true;
+    crossStep = false;
+
+    gameResult();
+    playerMoves();
+  }
+}
+
 // ========== Game Result =========
 function gameResult() {
   let gameResult = null;

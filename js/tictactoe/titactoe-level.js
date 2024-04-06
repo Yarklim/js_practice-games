@@ -25,4 +25,6 @@ export function changeGameLevel() {
       localStorage.setItem('tictactoe-level', selectedLevel);
     })
   );
+
+  return selectedLevel;
 }
