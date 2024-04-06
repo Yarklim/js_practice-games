@@ -2,8 +2,8 @@ export const CROSS_EL = `
 <svg class="cell-icon cross">
           <line
             class="first"
-            x1="30"
-            y1="30"
+            x1="25"
+            y1="25"
             x2="70"
             y2="70"
             stroke-width="7"
@@ -12,8 +12,8 @@ export const CROSS_EL = `
           <line
             class="second"
             x1="70"
-            y1="30"
-            x2="30"
+            y1="25"
+            x2="25"
             y2="70"
             stroke-width="7"
             stroke-linecap="round"
@@ -24,7 +24,7 @@ export const CROSS_EL = `
 export const ZERO_EL = `
 <svg class="cell-icon zero">
           <circle
-            r="23"
+            r="25"
             cx="48"
             cy="48"
             stroke-width="7"

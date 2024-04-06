@@ -15,6 +15,8 @@ let otherCompMoves = null;
 let crossStep = true;
 let stepsCount = 0;
 
+let resultGame = null;
+
 let gameResultDrawValue = Number(localStorage.getItem('tictactoe-draw')) || 0;
 drawResultEl.textContent = gameResultDrawValue;
 
@@ -34,7 +36,8 @@ function playerMoves() {
       if (
         !crossStep &&
         !cell.classList.contains('x') &&
-        !cell.classList.contains('o')
+        !cell.classList.contains('o') &&
+        !resultGame
       ) {
         cell.innerHTML = ZERO_EL;
         cell.classList.add('o');
@@ -67,7 +70,7 @@ function compFirstMovesEasyLevel() {
 
   filterMoves();
 
-  if (!playerMoveFirst && compMoveFirst && compMove) {
+  if (!playerMoveFirst && compMoveFirst && compMove && !resultGame) {
     const idxCell = Math.floor(Math.random() * firstCompMoves.length);
 
     fieldCells[firstCompMoves[idxCell]].innerHTML = CROSS_EL;
@@ -84,11 +87,14 @@ function compFirstMovesEasyLevel() {
     playerMoves();
   }
 
-  if (!playerMoveFirst && !playerMove && !compMoveFirst && compMove) {
+  if (
+    !playerMoveFirst &&
+    !playerMove &&
+    !compMoveFirst &&
+    compMove &&
+    !resultGame
+  ) {
     const idxCell = Number(Math.floor(Math.random() * otherCompMoves.length));
-    console.log(movesArr);
-    console.log(otherCompMoves);
-    console.log(idxCell);
 
     fieldCells[otherCompMoves[idxCell]].innerHTML = CROSS_EL;
     fieldCells[otherCompMoves[idxCell]].classList.add('x');
@@ -106,35 +112,37 @@ function compFirstMovesEasyLevel() {
 
 // ========== Game Result =========
 function gameResult() {
-  let gameResult = null;
-
-  if (stepsCount === 9) {
-    gameResult = 'The game ended in a draw';
-    gameResultDrawValue += 1;
-    drawResultEl.textContent = gameResultDrawValue;
-    localStorage.setItem('tictactoe-draw', gameResultDrawValue);
-  }
-
   for (let i = 0; i < WINNING_COMB.length; i++) {
     if (
       fieldCells[WINNING_COMB[i][0]].classList.contains('x') &&
       fieldCells[WINNING_COMB[i][1]].classList.contains('x') &&
       fieldCells[WINNING_COMB[i][2]].classList.contains('x')
     ) {
-      gameResult = 'Winner - X';
+      resultGame = 'Winner - X';
     }
     if (
       fieldCells[WINNING_COMB[i][0]].classList.contains('o') &&
       fieldCells[WINNING_COMB[i][1]].classList.contains('o') &&
       fieldCells[WINNING_COMB[i][2]].classList.contains('o')
     ) {
-      gameResult = 'Winner - 0';
+      resultGame = 'Winner - 0';
     }
   }
 
-  if (gameResult) {
+  if (
+    stepsCount === 9 &&
+    resultGame !== 'Winner - X' &&
+    resultGame !== 'Winner - 0'
+  ) {
+    resultGame = 'The game ended in a draw';
+    gameResultDrawValue += 1;
+    drawResultEl.textContent = gameResultDrawValue;
+    localStorage.setItem('tictactoe-draw', gameResultDrawValue);
+  }
+
+  if (resultGame) {
     setTimeout(() => {
-      console.log(gameResult);
+      console.log(resultGame);
     }, 500);
   }
 }
