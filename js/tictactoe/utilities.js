@@ -84,8 +84,20 @@ export const playerEasyMoves = movesArr => {
   for (let i = 0; i < movesArr.length; i++) {
     if (movesArr[i] === 'o') {
       playerMovesO.push(i);
+
+      console.log(playerMovesO);
     }
   }
 
-  return COMP_EASY_MOVES.get(playerMovesO.join(''));
+  if (playerMovesO.length > 1) {
+    for (let num of COMP_EASY_MOVES.keys()) {
+      if (num.includes(playerMovesO.join('').slice(-2))) {
+        console.log(playerMovesO.join('').slice(-2));
+        console.log(COMP_EASY_MOVES.get(num));
+        return COMP_EASY_MOVES.get(num);
+      }
+    }
+  }
+
+  return null;
 };

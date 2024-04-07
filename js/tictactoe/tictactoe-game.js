@@ -107,7 +107,7 @@ function compMovesEasyLevel() {
     fieldCells[firstCompMoves[idxCell]].classList.add('x');
     movesArr[firstCompMoves[idxCell]] = 'x';
 
-    console.log(movesArr);
+    // console.log(movesArr);
 
     stepsCount += 1;
     compMoveFirst = false;
@@ -134,8 +134,6 @@ function compMovesEasyLevel() {
       fieldCells[Number(nextMoveIdx)].innerHTML = CROSS_EL;
       fieldCells[Number(nextMoveIdx)].classList.add('x');
       movesArr[Number(nextMoveIdx)] = 'x';
-
-      console.log(nextMoveIdx);
 
       stepsCount += 1;
       compMove = false;
