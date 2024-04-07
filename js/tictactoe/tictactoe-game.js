@@ -53,8 +53,6 @@ function playerMoves() {
         stepsCount += 1;
         movesArr[idx] = 'o';
 
-        console.log(movesArr);
-
         crossStep = true;
         compMove = true;
         playerMove = false;
@@ -74,8 +72,6 @@ function playerMoves() {
 
         stepsCount += 1;
         movesArr[idx] = 'x';
-
-        console.log(movesArr);
 
         crossStep = false;
         compMove = true;
@@ -135,9 +131,9 @@ function compMovesEasyLevel() {
     const idxCell = Number(Math.floor(Math.random() * otherCompMoves.length));
 
     if (nextMoveIdx && !fieldCells[nextMoveIdx].classList.contains('x')) {
-      fieldCells[nextMoveIdx].innerHTML = CROSS_EL;
-      fieldCells[nextMoveIdx].classList.add('x');
-      movesArr[nextMoveIdx] = 'x';
+      fieldCells[Number(nextMoveIdx)].innerHTML = CROSS_EL;
+      fieldCells[Number(nextMoveIdx)].classList.add('x');
+      movesArr[Number(nextMoveIdx)] = 'x';
 
       console.log(nextMoveIdx);
 
@@ -152,8 +148,6 @@ function compMovesEasyLevel() {
       fieldCells[otherCompMoves[idxCell]].innerHTML = CROSS_EL;
       fieldCells[otherCompMoves[idxCell]].classList.add('x');
       movesArr[otherCompMoves[idxCell]] = 'x';
-
-      console.log(nextMoveIdx);
 
       stepsCount += 1;
       compMove = false;
