@@ -1,19 +1,19 @@
 export const CROSS_EL = `
-<svg class="cell-icon cross">
+<svg class="cell-icon cross" width="100" height="100" viewBox="0 0 100 100">
           <line
             class="first"
-            x1="25"
-            y1="25"
-            x2="70"
+            x1="30"
+            y1="28"
+            x2="72"
             y2="70"
             stroke-width="7"
             stroke-linecap="round"
           />
           <line
             class="second"
-            x1="70"
-            y1="25"
-            x2="25"
+            x1="72"
+            y1="28"
+            x2="30"
             y2="70"
             stroke-width="7"
             stroke-linecap="round"
@@ -22,11 +22,11 @@ export const CROSS_EL = `
 `;
 
 export const ZERO_EL = `
-<svg class="cell-icon zero">
+<svg class="cell-icon zero" width="100" height="100" viewBox="0 0 100 100">
           <circle
             r="25"
-            cx="48"
-            cy="48"
+            cx="50"
+            cy="50"
             stroke-width="7"
             fill="none"
             stroke-linecap="round"
