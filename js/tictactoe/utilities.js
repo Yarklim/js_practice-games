@@ -45,8 +45,8 @@ export const WINNING_COMB = [
   [2, 4, 6],
 ];
 
-export const playerEasyMoves = movesArr => {
-  const COMP_EASY_MOVES = new Map([
+export const gameEasyMoves = (movesArr, playerMoveFirst) => {
+  const GAME_EASY_MOVES = new Map([
     ['12', '0'], // -> 0
     ['48', '0'], // -> 0
     ['36', '0'], // -> 0
@@ -73,28 +73,53 @@ export const playerEasyMoves = movesArr => {
     ['04', '8'], // -> 8
   ]);
 
-  const compMovesX = [];
-  for (let i = 0; i < movesArr.length; i++) {
-    if (movesArr[i] === 'x') {
-      compMovesX.push(i);
+  // ---------- Player Move First ----------
+  if (playerMoveFirst) {
+    const compMoves0 = [];
+    for (let i = 0; i < movesArr.length; i++) {
+      if (movesArr[i] === 'o') {
+        compMoves0.push(i);
+      }
+    }
+
+    const playerMovesX = [];
+    for (let i = 0; i < movesArr.length; i++) {
+      if (movesArr[i] === 'x') {
+        playerMovesX.push(i);
+      }
+    }
+
+    if (playerMovesX.length > 1) {
+      for (let num of GAME_EASY_MOVES.keys()) {
+        if (num.includes(playerMovesX.join('').slice(-2))) {
+          return GAME_EASY_MOVES.get(num);
+        }
+      }
     }
   }
 
-  const playerMovesO = [];
-  for (let i = 0; i < movesArr.length; i++) {
-    if (movesArr[i] === 'o') {
-      playerMovesO.push(i);
+  // ---------- Comp Move First ----------
 
-      console.log(playerMovesO);
+  if (!playerMoveFirst) {
+    const compMovesX = [];
+    for (let i = 0; i < movesArr.length; i++) {
+      if (movesArr[i] === 'x') {
+        compMovesX.push(i);
+      }
     }
-  }
 
-  if (playerMovesO.length > 1) {
-    for (let num of COMP_EASY_MOVES.keys()) {
-      if (num.includes(playerMovesO.join('').slice(-2))) {
-        console.log(playerMovesO.join('').slice(-2));
-        console.log(COMP_EASY_MOVES.get(num));
-        return COMP_EASY_MOVES.get(num);
+    const playerMovesO = [];
+    for (let i = 0; i < movesArr.length; i++) {
+      if (movesArr[i] === 'o') {
+        playerMovesO.push(i);
+      }
+    }
+
+    if (playerMovesO.length > 1) {
+      for (let num of GAME_EASY_MOVES.keys()) {
+        if (num.includes(playerMovesO.join('').slice(-2))) {
+          return GAME_EASY_MOVES.get(num);
+        }
       }
     }
   }

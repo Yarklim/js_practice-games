@@ -32,6 +32,7 @@
 .tictactoe__title {
   font-size: clamp(1.375rem, 1.025rem + 1.75vw, 3.125rem); // 22 - 50
   font-weight: 500;
+  color: #202933;
 }
 
 // ============== Opponent Choise =============
@@ -105,6 +106,29 @@
   }
 }
 
+// =============== First move ================
+.first-move__wrapper {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.first-move__text {
+  font-size: clamp(1rem, 0.925rem + 0.38vw, 1.375rem); // 16 - 22
+  font-weight: 500;
+  color: #202933;
+}
+
+.first-move__value {
+  margin-left: 10px;
+
+  font-size: clamp(1rem, 0.925rem + 0.38vw, 1.375rem); // 16 - 22
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
 // =============== Game Field ================
 .titactoe__field {
   margin-top: clamp(0.938rem, 0.75rem + 0.94vw, 1.875rem); // 15 - 30
@@ -140,15 +164,37 @@
 
   stroke: rgba(255, 255, 255, 0.8);
 
-  //   &.cross {
-  //     stroke: rgba(255, 255, 255, 0.808);
-  //   }
+  &.cross {
+    stroke: rgba(255, 255, 255, 0.808);
 
-  //   &.zero {
-  //     stroke: rgba(255, 255, 255, 0.808);
-  //       stroke-dasharray: 50;
-  //       stroke-dashoffset: 100;
-  //   }
+    & .first {
+      stroke-dasharray: 57;
+      stroke-dashoffset: 57;
+
+      animation: draw 0.3s forwards;
+    }
+
+    & .second {
+      stroke-dasharray: 57;
+      stroke-dashoffset: 57;
+
+      animation: draw 0.3s 0.3s forwards;
+    }
+  }
+
+  &.zero {
+    stroke: rgba(255, 255, 255, 0.808);
+    stroke-dasharray: 146;
+    stroke-dashoffset: 146;
+
+    animation: draw 0.6s forwards;
+  }
+}
+
+@keyframes draw {
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 // =================== Score ==================
@@ -179,4 +225,96 @@
   font-size: clamp(1rem, 0.925rem + 0.38vw, 1.375rem); // 16 - 22
   font-weight: 600;
   color: #e0e0e0;
+}
+
+// ================= Modal ===================
+.tictactoe__backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  visibility: visible;
+  opacity: 1;
+
+  z-index: 50;
+
+  transition: opacity 0.3s ease-in-out;
+
+  &.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.is-hidden .tictactoe__modal {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+.tictactoe__modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+
+  width: clamp(18.75rem, 15rem + 18.75vw, 37.5rem); // 300 - 600
+
+  padding: clamp(1.25rem, 1rem + 1.25vw, 2.5rem); // 20 - 40
+
+  background: #0f2027;
+  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.tictactoe__modal--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tictactoe__modal--close {
+  min-width: 100px;
+
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: clamp(0.313rem, 0.25rem + 0.31vw, 0.625rem)
+    clamp(0.938rem, 0.75rem + 0.94vw, 1.875rem); // 5 - 10, 15 - 30
+
+  font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1.125rem); // 14 - 18
+  font-weight: 600;
+
+  border-radius: 6px;
+  background: #bdc3c7;
+
+  cursor: pointer;
+}
+
+.tictactoe__modal--logo {
+  width: clamp(5rem, 4.125rem + 4.38vw, 9.375rem); // 80 - 150
+
+  margin: 0 auto;
+
+  fill: #cdd9db;
+}
+
+.tictactoe__modal--content {
+  margin-top: clamp(0.938rem, 0.75rem + 0.94vw, 1.875rem); // 15 - 30
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.313rem, 0.188rem + 0.63vw, 0.938rem) 0; // 5 - 15
+}
+
+.tictactoe__modal--content-text {
+  font-size: clamp(1rem, 0.8rem + 1vw, 2rem); // 16 - 32
+  font-weight: 600;
+  color: #cdd9db;
 }

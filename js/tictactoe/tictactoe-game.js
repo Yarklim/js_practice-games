@@ -1,17 +1,19 @@
 import { changeGameLevel } from './titactoe-level';
-import { CROSS_EL, ZERO_EL, WINNING_COMB, playerEasyMoves } from './utilities';
+import { openModal } from './tictactoe-modal';
+import { CROSS_EL, ZERO_EL, WINNING_COMB, gameEasyMoves } from './utilities';
 
 const fieldCells = document.querySelectorAll('[data-tictactoe-cell]');
 const playerResultEl = document.querySelector('[data-player-value]');
 const compResultEl = document.querySelector('[data-comp-value]');
 const drawResultEl = document.querySelector('[data-draw-value]');
+const whoseMoveEl = document.querySelector('.first-move__value');
 
 let gameLevel = changeGameLevel() || localStorage.getItem('tictactoe-level');
-let playerMoveFirst = false;
-let compMoveFirst = true;
+let playerMoveFirst = true;
+let compMoveFirst = false;
 let compMove = true;
 let playerMove = false;
-const movesArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+let movesArr = null;
 let otherCompMoves = null;
 
 let crossStep = true;
@@ -28,10 +30,28 @@ let gameResultDrawValue = Number(localStorage.getItem('tictactoe-draw')) || 0;
 drawResultEl.textContent = gameResultDrawValue;
 
 // ========== Start Game ===========
-function startGame() {
+export function startGame() {
+  fieldCells.forEach(cell => {
+    cell.classList.remove('x');
+    cell.classList.remove('o');
+    cell.innerHTML = null;
+  });
+
+  compMove = true;
+  playerMove = false;
+  movesArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+  otherCompMoves = null;
+
+  crossStep = true;
+  stepsCount = 0;
+
+  resultGame = null;
+
   if (gameLevel === 'easy' && !playerMoveFirst) {
+    whoseMoveEl.textContent = 'Computer';
     compMovesEasyLevel();
   } else {
+    whoseMoveEl.textContent = 'Player';
     playerMoves();
   }
 }
@@ -59,7 +79,7 @@ function playerMoves() {
 
         setTimeout(() => {
           compMovesEasyLevel();
-        }, 500);
+        }, 700);
       } else if (
         crossStep &&
         !compMoveFirst &&
@@ -79,7 +99,7 @@ function playerMoves() {
 
         setTimeout(() => {
           compMovesEasyLevel();
-        }, 500);
+        }, 700);
       } else {
         return;
       }
@@ -107,8 +127,6 @@ function compMovesEasyLevel() {
     fieldCells[firstCompMoves[idxCell]].classList.add('x');
     movesArr[firstCompMoves[idxCell]] = 'x';
 
-    // console.log(movesArr);
-
     stepsCount += 1;
     compMoveFirst = false;
     compMove = false;
@@ -126,11 +144,15 @@ function compMovesEasyLevel() {
     compMove &&
     !resultGame
   ) {
-    const nextMoveIdx = playerEasyMoves(movesArr);
+    const nextMoveIdx = gameEasyMoves(movesArr, playerMoveFirst);
 
     const idxCell = Number(Math.floor(Math.random() * otherCompMoves.length));
 
-    if (nextMoveIdx && !fieldCells[nextMoveIdx].classList.contains('x')) {
+    if (
+      nextMoveIdx &&
+      !fieldCells[nextMoveIdx].classList.contains('x') &&
+      !fieldCells[nextMoveIdx].classList.contains('o')
+    ) {
       fieldCells[Number(nextMoveIdx)].innerHTML = CROSS_EL;
       fieldCells[Number(nextMoveIdx)].classList.add('x');
       movesArr[Number(nextMoveIdx)] = 'x';
@@ -165,21 +187,54 @@ function compMovesEasyLevel() {
     compMove &&
     !resultGame
   ) {
+    const nextMoveIdx = gameEasyMoves(movesArr, playerMoveFirst);
+
     const idxCell = Number(Math.floor(Math.random() * otherCompMoves.length));
 
-    fieldCells[otherCompMoves[idxCell]].innerHTML = ZERO_EL;
-    fieldCells[otherCompMoves[idxCell]].classList.add('o');
-    movesArr[otherCompMoves[idxCell]] = 'o';
+    if (
+      !fieldCells[4].classList.contains('x') &&
+      !fieldCells[4].classList.contains('o')
+    ) {
+      fieldCells[4].innerHTML = ZERO_EL;
+      fieldCells[4].classList.add('o');
+      movesArr[4] = 'o';
 
-    console.log(movesArr);
+      stepsCount += 1;
+      compMove = false;
+      playerMove = true;
+      crossStep = true;
 
-    stepsCount += 1;
-    compMove = false;
-    playerMove = true;
-    crossStep = true;
+      gameResult();
+      playerMoves();
+    } else if (
+      nextMoveIdx &&
+      !fieldCells[nextMoveIdx].classList.contains('x') &&
+      !fieldCells[nextMoveIdx].classList.contains('o')
+    ) {
+      fieldCells[Number(nextMoveIdx)].innerHTML = ZERO_EL;
+      fieldCells[Number(nextMoveIdx)].classList.add('o');
+      movesArr[Number(nextMoveIdx)] = 'o';
 
-    gameResult();
-    playerMoves();
+      stepsCount += 1;
+      compMove = false;
+      playerMove = true;
+      crossStep = true;
+
+      gameResult();
+      playerMoves();
+    } else {
+      fieldCells[otherCompMoves[idxCell]].innerHTML = ZERO_EL;
+      fieldCells[otherCompMoves[idxCell]].classList.add('o');
+      movesArr[otherCompMoves[idxCell]] = 'o';
+
+      stepsCount += 1;
+      compMove = false;
+      playerMove = true;
+      crossStep = true;
+
+      gameResult();
+      playerMoves();
+    }
   }
 }
 
@@ -192,12 +247,12 @@ function gameResult() {
       fieldCells[WINNING_COMB[i][2]].classList.contains('x')
     ) {
       if (playerMoveFirst) {
-        resultGame = 'Player Win!';
+        resultGame = 'playerWin';
         gameResultPlayerWin += 1;
         playerResultEl.textContent = gameResultPlayerWin;
         localStorage.setItem('tictactoe-player-win', gameResultPlayerWin);
       } else {
-        resultGame = 'Comp Win!';
+        resultGame = 'compWin';
         gameResultCompWin += 1;
         compResultEl.textContent = gameResultCompWin;
         localStorage.setItem('tictactoe-comp-win', gameResultCompWin);
@@ -209,12 +264,12 @@ function gameResult() {
       fieldCells[WINNING_COMB[i][2]].classList.contains('o')
     ) {
       if (!playerMoveFirst) {
-        resultGame = 'Player Win!';
+        resultGame = 'playerWin';
         gameResultPlayerWin += 1;
         playerResultEl.textContent = gameResultPlayerWin;
         localStorage.setItem('tictactoe-player-win', gameResultPlayerWin);
       } else {
-        resultGame = 'Comp Win!';
+        resultGame = 'compWin';
         gameResultCompWin += 1;
         compResultEl.textContent = gameResultCompWin;
         localStorage.setItem('tictactoe-comp-win', gameResultCompWin);
@@ -224,10 +279,10 @@ function gameResult() {
 
   if (
     stepsCount === 9 &&
-    resultGame !== 'Player Win!' &&
-    resultGame !== 'Comp Win!'
+    resultGame !== 'playerWin' &&
+    resultGame !== 'compWin'
   ) {
-    resultGame = 'The game ended in a draw';
+    resultGame = 'gameDraw';
     gameResultDrawValue += 1;
     drawResultEl.textContent = gameResultDrawValue;
     localStorage.setItem('tictactoe-draw', gameResultDrawValue);
@@ -235,10 +290,8 @@ function gameResult() {
 
   if (resultGame) {
     setTimeout(() => {
-      console.log(resultGame);
-    }, 500);
+      playerMoveFirst = !playerMoveFirst;
+      openModal(resultGame);
+    }, 1000);
   }
 }
-
-// =============== End Game ================
-function endGame() {}
